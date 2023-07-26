@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--Mybatis的核心配置文件入口-->
+<configuration>
+
+    <!-- 1、导入全局的数据库连接配置信息:直接去src类路径下寻找 -->
+    <properties resource="db.properties"></properties>
+
+    <!-- 2、类型别名 -->
+    <!--<typeAliases>
+        &lt;!&ndash; 类型别名的包扫描 : 自动扫描该包下的全部类型，默认用类名作为别名&ndash;&gt;
+        <package name="com.wpf.bean"/>
+    </typeAliases>-->
+
+    <!-- 环境配置 默认使用默认配置-->
+    <environments default="development">
+        <!-- 环境1：id是 development 默认使用环境 -->
+        <environment id="development">
+            <!-- Mybatis 默认支持事务开启，默认使用JDBC管理事务 -->
+            <transactionManager type="JDBC"/>
+            <!-- 默认配置了默认连接池： POOLED -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 配置映射文件 -->
+    <mappers>
+        <!-- 包扫描该包下的全部映射文件 -->
+        <package name="com.wpf.dao"/>
+    </mappers>
+</configuration>
